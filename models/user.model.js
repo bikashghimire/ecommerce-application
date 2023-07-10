@@ -10,6 +10,7 @@ class User {
     this.address = {
       street: street,
       postalCode: postal,
+      
       city: city,
     };
   }
