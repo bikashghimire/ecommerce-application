@@ -31,8 +31,6 @@ app.use(addCsrfTokenMiddleware);
 app.use(checkAuthStatusMiddleware);
 
 app.use(authRoutes);
-
-app.use(authRoutes);
 app.use(baseRoutes);
 app.use(productsRoutes);
 
