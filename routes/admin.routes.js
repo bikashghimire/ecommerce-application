@@ -1,7 +1,7 @@
 const express = require("express");
 
 const adminController = require("../controllers/admin.controller");
-const imageUploadMiddleware = require("../middleware/image-upload");
+const imageUploadMiddleware = require("../middlewares/image-upload");
 
 const router = express.Router();
 
@@ -22,5 +22,7 @@ router.post(
   imageUploadMiddleware,
   adminController.updateProduct
 );
+
+router.delete("/products/:id", adminController.deleteProduct);
 
 module.exports = router;
