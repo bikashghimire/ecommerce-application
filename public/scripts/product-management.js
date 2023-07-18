@@ -4,7 +4,7 @@ const deleteProductButtonElements = document.querySelectorAll(
 
 async function deleteProduct(event) {
   const buttonElement = event.target;
-  const productId = buttonElement.dataset.productId;
+  const productId = buttonElement.dataset.productid;
   const csrfToken = buttonElement.dataset.csrf;
 
   const response = await fetch(
@@ -16,6 +16,7 @@ async function deleteProduct(event) {
 
   if (!response.ok) {
     alert("Something went wrong!");
+    return;
   }
 
   buttonElement.parentElement.parentElement.parentElement.parentElement.remove();
