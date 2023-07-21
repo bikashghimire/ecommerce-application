@@ -11,4 +11,4 @@ function initializeCart(req, res, next) {
   next();
 }
 
-module.exports = initialzeCart;
+module.exports = initializeCart;
