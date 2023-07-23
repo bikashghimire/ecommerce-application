@@ -15,22 +15,22 @@ class User {
     };
   }
 
-  static async findById(userId) {
+  static findById(userId) {
     const uid = new mongodb.ObjectId(userId);
 
     return db
       .getDb()
       .collection("users")
-      .findOne({ _id: uid }, { password: -1 });
+      .findOne({ _id: uid }, { projection: { password: 0 } });
   }
 
   getUserWithSameEmail() {
     return db.getDb().collection("users").findOne({ email: this.email });
   }
-  async existsAlready() {
-    this.getUserWithSameEmail();
 
-    if (this.existsAlready) {
+  async existsAlready() {
+    const existingUser = await this.getUserWithSameEmail();
+    if (existingUser) {
       return true;
     }
     return false;

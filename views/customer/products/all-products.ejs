@@ -6,13 +6,11 @@
   <main>
     <h1>All Products</h1>
     <ul id="products-grid">
-      <% for (const productId in products) { %>
+      <% for (const product of products) { %>
         <li>
-          <%- include('../../shared/includes/product-item', { product: products[productId] }) %>
+          <%- include('../../shared/includes/product-item', { product: product }) %>
         </li>
       <% } %>
     </ul>
-    
-    
   </main>
 <%- include('../../shared/includes/footer') %>
