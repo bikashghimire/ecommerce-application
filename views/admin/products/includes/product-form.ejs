@@ -25,9 +25,7 @@
         <%
         if
         (imageRequired)
-        {
-        %
-      />required<% } %>>
+        { %>required<% } %>>
     </p>
 
     <img src="" alt="Selected image." />
@@ -61,7 +59,8 @@
   <p>
     <label for="description">Description</label>
     <textarea id="description" name="description" rows="7" required>
-<%= product.description %></textarea>
+<%= product.description %></textarea
+    >
   </p>
 
   <p>
