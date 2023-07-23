@@ -36,7 +36,7 @@ class Cart {
         const cartItem = { ...item };
         const quantityChange = newQuantity - item.quality;
         cartItem.quantity = newQuantity;
-        cartItem.totalPrice = newQuantity * product.price;
+        cartItem.totalPrice = newQuantity * item.product.price;
         this.items[i] = cartItem;
 
         this.totalQuantity = this.totalQuantity + quantityChange;
