@@ -1,9 +1,11 @@
 function isEmpty(value) {
   return !value || value.trim() === "";
 }
+
 function userCredentialsAreValid(email, password) {
-  return;
-  email && email.includes("@") && password.trim().length >= 5;
+  return (
+    email && email.includes("@") && password && password.trim().length >= 6
+  );
 }
 
 function userDetailsAreValid(email, password, name, street, postal, city) {

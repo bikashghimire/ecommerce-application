@@ -1,10 +1,8 @@
 const cartItemUpdateFormElements = document.querySelectorAll(
   ".cart-item-management"
 );
-
-const cartTotalPriceElement = document.getElementById(".cart-total-price");
-
-const cartBadge = document.querySelector("./nav-items .badge");
+const cartTotalPriceElement = document.getElementById("cart-total-price");
+const cartBadgeElements = document.querySelectorAll(".nav-items .badge");
 
 async function updateCartItem(event) {
   event.preventDefault();
@@ -16,9 +14,8 @@ async function updateCartItem(event) {
   const quantity = form.firstElementChild.value;
 
   let response;
-
   try {
-    const response = await fetch("/cart/items", {
+    response = await fetch("/cart/items", {
       method: "PATCH",
       body: JSON.stringify({
         productId: productId,
@@ -26,34 +23,37 @@ async function updateCartItem(event) {
         _csrf: csrfToken,
       }),
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
     });
   } catch (error) {
-    alert("Something went wrong ");
+    alert("Something went wrong!");
     return;
   }
+
   if (!response.ok) {
-    alert("Something went wrong ");
+    alert("Something went wrong!");
     return;
   }
+
   const responseData = await response.json();
 
   if (responseData.updatedCartData.updatedItemPrice === 0) {
     form.parentElement.parentElement.remove();
   } else {
-    const cartItemTotalPricElement =
+    const cartItemTotalPriceElement =
       form.parentElement.querySelector(".cart-item-price");
-      cartItemTotalPricElement.textContent =
+    cartItemTotalPriceElement.textContent =
       responseData.updatedCartData.updatedItemPrice.toFixed(2);
   }
-
- 
 
   cartTotalPriceElement.textContent =
     responseData.updatedCartData.newTotalPrice.toFixed(2);
 
-  cartBadge.textContent = responseData.newTotalQuantity;
+  for (const cartBadgeElement of cartBadgeElements) {
+    cartBadgeElement.textContent =
+      responseData.updatedCartData.newTotalQuantity;
+  }
 }
 
 for (const formElement of cartItemUpdateFormElements) {

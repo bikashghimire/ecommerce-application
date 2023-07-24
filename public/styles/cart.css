@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   background-color: var(--color-gray-700);
-  border-radius: (--space-4);
+  padding: var(--space-4);
+  margin: var(--space-4) 0;
+  border-radius: var(--border-radius-medium);
 }
 
 .cart-item h2 {
@@ -24,7 +26,8 @@
 
 #cart-total {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -41,6 +44,11 @@
 
 @media (min-width: 48rem) {
   .cart-item {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #cart-total {
     flex-direction: row;
     justify-content: space-between;
   }
